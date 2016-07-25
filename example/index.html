@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>Alert7.js</title>
+    </head>
+
+    <body>
+
+        <h1>Alert7.js</h1>
+
+        <p>
+            <a href="https://github.com/Wildtyto/Alert7.js" target="_blank">https://github.com/Wildtyto/Alert7.js</a>
+        </p>
+        
+        <button onclick="Alert7.alert('This is Title');">Alert</button>
+        <button onclick="window.simplelyAlert=Alert7.alert('Simplely', 'Multiple choice', 'BUTTON 1', onSimplelyHandler, 'BUTTON 2', null, 'BUTTON 3');">Simplely</button>
+        <button onclick="onConfirmClicked();">Confirm</button>
+        <button onclick="onMultipleClicked();">Multiple</button>
+
+    </body>
+
+    <script src="../alert7.min.js"></script>
+    <script>
+
+        (function (Alert7) {
+
+            "use strict";
+
+            window.onSimplelyHandler = function () {
+                    window.simplelyAlert.message += "+";
+                    window.simplelyAlert.setType(Alert7.TYPE_CONFIRM);
+                    window.simplelyAlert.present();
+                    Alert7.break();
+                };
+
+            window.onConfirmClicked = function () {
+                    var _alertA = new Alert7();
+                    _alertA.setTitle("Alert7 confirm");
+                    _alertA.setMessage("Right?");
+                    _alertA.setType(Alert7.TYPE_CONFIRM);
+                    _alertA.addAction("No");
+                    _alertA.addAction("Yes");
+                    _alertA.present();
+                };
+
+            window.onMultipleClicked = function () {
+                    var _alertB = new Alert7();
+                    _alertB.setTitle("Alert7 options");
+                    _alertB.setMessage("Multiple actions in an alert.");
+                    _alertB.addAction("Next", function () {
+                            var _alertC = new Alert7();
+                            _alertC.title = "Another alert";
+                            _alertC.message = "Alert with default button if it wasn't set.";
+                            _alertC.present();
+                            Alert7.break();
+                        });
+                    _alertB.addAction("Nothng");
+                    _alertB.addAction("Quit");
+                    _alertB.present();
+                };
+
+        }(window.Alert7));  
+
+    </script>
+
+</html>
