@@ -17,6 +17,7 @@
         </p>
         
         <button onclick="Alert7.alert('This is Title');">Alert</button>
+        <button onclick="Alert7.confirm('This is title', 'Confirm description', 'Yes', onConfirmYes);">Confirm</button>
         <button onclick="window.simplelyAlert=Alert7.alert('Simplely', 'Multiple choice', 'BUTTON 1', onSimplelyHandler, 'BUTTON 2', null, 'BUTTON 3');">Simplely</button>
         <button onclick="onConfirmClicked();">Confirm</button>
         <button onclick="onMultipleClicked();">Multiple</button>
@@ -29,6 +30,10 @@
         (function (Alert7) {
 
             "use strict";
+
+            window.onConfirmYes = function () {
+                    Alert7.confirm("Another confirm", null, null, null, "Quit");
+                };
 
             window.onSimplelyHandler = function () {
                     window.simplelyAlert.message += "+";

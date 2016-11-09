@@ -57,6 +57,17 @@ Alert7.alert("This is Title", "Put some text contents in here",
 
 ![preview-alert7-c](http://i.imgur.com/8t1WrEV.jpg)
 
+To launch a simple confirm with using ```Alert7.confirm``` method. And return an Alert7-Object too.
+
+```
+Alert7.confirm("This is Title", "Put some text contents in here", 
+	"BUTTON 1", function () {}, 
+	"BUTTON 2", function () {}
+);
+```
+
+![preview-alert7-e](http://i.imgur.com/UmDl64c.jpg)
+
 ### New Alert7-object
 
 Use ```new``` to create an Alert7-Object.
@@ -165,6 +176,20 @@ _a7Obj = Alert7.alert( _titleStr, _messageStr,
 	_btn1Str, _btn1Handler,
 	_btn2Str, _btn2Handler,
 	...	
+)
+```
+_parameter: **\_titleStr:String, \_messageStr:String, \_btn1Str:String, \_btn1Handler:Function...**  / return: **\_a7Obj:Alert7Object**_
+
+---
+
+### Alert7.confirm
+
+Appear an confirm of Alert7 and return Alert7-Object.
+
+```
+_a7Obj = Alert7.confirm( _titleStr, _messageStr,
+	_btn1Str, _btn1Handler,
+	_btn2Str, _btn2Handler
 )
 ```
 _parameter: **\_titleStr:String, \_messageStr:String, \_btn1Str:String, \_btn1Handler:Function...**  / return: **\_a7Obj:Alert7Object**_

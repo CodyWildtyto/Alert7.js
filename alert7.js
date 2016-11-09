@@ -24,20 +24,39 @@
         Alert7Class.TYPE_DEFAULT = _TYPE_DEFAULT;
         Alert7Class.TYPE_CONFIRM = _TYPE_CONFIRM;
         Alert7Class.alert = _staticAlert;
+        Alert7Class.confirm = _staticConfirm;
         Alert7Class.break = _staticBreak;
         _appendCSS();
         return Alert7Class;
 
     }
 
-    function _staticAlert(_title, _message) {
+    function _staticAlert() {
+
+        var _tempAlert = _getStaticAlertObject.apply(null, arguments);
+        _tempAlert.present();
+        return _tempAlert;
+
+    }
+
+    function _staticConfirm() {
+
+        var _args = [].splice.call(arguments, 0, 6);
+        if ( _args.length < 5 ) _args[4] = "Cancel";
+        var _tempAlert = _getStaticAlertObject.apply(null, _args);
+        _tempAlert.setType(_TYPE_CONFIRM);
+        _tempAlert.present();
+        return _tempAlert;
+
+    }
+
+    function _getStaticAlertObject(_title, _message) {
 
         var _tempAlert = new Alert7Class();
         var _args = [].splice.call(arguments, 2);
         _tempAlert.setTitle(_title);
         _tempAlert.setMessage(_message);
         while ( _args.length ) _tempAlert.addAction(_args.shift(), _args.shift());
-        _tempAlert.present();
         return _tempAlert;
 
     }
@@ -138,11 +157,13 @@
             "}" +
             "" +
             "#Alert7.alert7-confirm .alert7-actions button.alert7-action-item {" +
+                "float: right;" +
                 "width: 50%;" +
             "}" +
             "" +
             "#Alert7.alert7-confirm .alert7-actions button.alert7-action-item:first-of-type {" +
-                "border-bottom-left-radius: 18px;" +
+                "border-left: 1px solid #E7E7E7;" +
+                "border-bottom-right-radius: 18px;" +
             "}" +
             "" +
             "#Alert7.alert7-confirm .alert7-actions button.alert7-action-item:first-of-type:last-of-type {" +
@@ -150,9 +171,8 @@
             "}" +
             "" +
             "#Alert7.alert7-confirm .alert7-actions button.alert7-action-item:nth-of-type(2) {" +
-                "border-left: 1px solid #E7E7E7;" +
-                "border-bottom-left-radius: 0;" +
-                "border-bottom-right-radius: 18px;" +
+                "border-bottom-left-radius: 18px;" +
+                "border-bottom-right-radius: 0;" +
             "}" +
             "" +
             "#Alert7.alert7-confirm .alert7-actions button.alert7-action-item:nth-of-type(n+3) {" +
